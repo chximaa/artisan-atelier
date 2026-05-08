@@ -1,0 +1,182 @@
+/* ── Sidebar Shell ──────────────────────────── */
+.category-sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  max-height: calc(100vh - var(--header-h) - 48px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  scrollbar-width: thin;
+}
+
+.category-sidebar::-webkit-scrollbar { width: 3px; }
+.category-sidebar::-webkit-scrollbar-thumb { background: var(--oat); border-radius: var(--r-full); }
+
+/* ── Heading ────────────────────────────────── */
+.sidebar-heading {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 14px 14px;
+  border-bottom: 1px solid var(--oat);
+  margin-bottom: 12px;
+}
+
+/* ── Category Items ─────────────────────────── */
+.category-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.category-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--espresso-light);
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease),
+              color     var(--t-fast) var(--ease),
+              transform var(--t-fast) var(--ease);
+  user-select: none;
+  overflow: hidden;
+}
+
+.category-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 60%;
+  background: var(--honey);
+  border-radius: 0 var(--r-full) var(--r-full) 0;
+  transition: transform var(--t-base) var(--ease-spring);
+}
+
+.category-item:hover {
+  background: var(--honey-faint);
+  color: var(--espresso);
+  transform: translateX(2px);
+}
+
+.category-item.active {
+  background: var(--honey-faint);
+  color: var(--espresso);
+  font-weight: 500;
+}
+
+.category-item.active::before {
+  transform: translateY(-50%) scaleY(1);
+}
+
+/* Category icon */
+.cat-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-xs);
+  background: var(--oat);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: background var(--t-fast) var(--ease);
+}
+
+.category-item:hover .cat-icon,
+.category-item.active .cat-icon {
+  background: var(--honey-light);
+}
+
+.cat-label { flex: 1; }
+
+.cat-count {
+  font-size: 11px;
+  color: var(--muted-light);
+  background: var(--cream-dark);
+  padding: 2px 7px;
+  border-radius: var(--r-full);
+  transition: background var(--t-fast) var(--ease),
+              color     var(--t-fast) var(--ease);
+}
+
+.category-item.active .cat-count,
+.category-item:hover .cat-count {
+  background: var(--honey-light);
+  color: var(--espresso-mid);
+}
+
+/* Skeleton loading */
+.cat-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 14px;
+}
+
+.cat-skel-row {
+  height: 38px;
+  border-radius: var(--r-sm);
+}
+
+/* ── Sidebar Section Divider ────────────────── */
+.sidebar-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--oat);
+}
+
+.sidebar-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 14px 12px;
+  display: block;
+}
+
+/* Price range (visual only, future hook) */
+.price-slider-wrap {
+  padding: 0 14px;
+}
+
+.price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--espresso-light);
+  margin-top: 8px;
+}
+
+.price-track {
+  width: 100%;
+  height: 4px;
+  background: var(--oat);
+  border-radius: var(--r-full);
+  position: relative;
+  margin: 6px 0;
+}
+
+.price-fill {
+  position: absolute;
+  left: 10%;
+  right: 20%;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--honey-light), var(--honey));
+  border-radius: var(--r-full);
+}
